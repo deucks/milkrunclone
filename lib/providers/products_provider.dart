@@ -21,6 +21,7 @@ class ProductsProvider extends ChangeNotifier {
     List<ParentCategories> fakeData = FakeData.createFakeData();
     ParentCategories parentCategory =
         fakeData.where((element) => element.name == parentCategoryName).first;
+    parentCategory.categories.insert(0, Categories(name: 'All', products: []));
     _streamControllerCategories.add(parentCategory.categories);
   }
 
@@ -37,5 +38,20 @@ class ProductsProvider extends ChangeNotifier {
       allProducts.addAll(category.products);
     }
     _streamControllerProducts.add(allProducts);
+  }
+
+  void filterProductsByCategory(String productCategory, String parentName) {
+    List<ParentCategories> fakeData = FakeData.createFakeData();
+    if (productCategory == 'All') {
+      getAllProductsFromParent(parentName);
+      return;
+    }
+
+    ParentCategories parentCategory =
+        fakeData.where((element) => element.name == parentName).first;
+    Categories category = parentCategory.categories
+        .where((element) => element.name == productCategory)
+        .first;
+    _streamControllerProducts.add(category.products);
   }
 }

@@ -61,6 +61,7 @@ class _ViewCategoryState extends State<ViewCategory> {
     return Consumer<ProductsProvider>(
         builder: (context, productCategories, child) {
       return StreamBuilder(
+          key: Key('subcat'),
           stream: productCategories.productsCategoryStream,
           builder: (context, AsyncSnapshot<List<Categories>> snapshot) {
             if (snapshot.hasData) return _createSubCategoryList(snapshot.data);
@@ -73,14 +74,24 @@ class _ViewCategoryState extends State<ViewCategory> {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: 50),
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(color: Colors.white),
         child: ListView.builder(
+          padding: EdgeInsets.only(left: 10),
           itemBuilder: (context, index) {
             Categories category = snapshot![index];
             return GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.read<ProductsProvider>().filterProductsByCategory(
+                    category.name, _routedCategory.name);
+              },
               child: Container(
-                child: Text(category.name),
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.grey.shade200),
+                child: Center(child: Text(category.name)),
               ),
             );
           },
@@ -91,4 +102,8 @@ class _ViewCategoryState extends State<ViewCategory> {
       ),
     );
   }
+
+  // Widget _createProducts() {
+  //   return Select
+  // }
 }
