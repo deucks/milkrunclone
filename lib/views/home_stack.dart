@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:milkrunclone/homeitems/cart.dart';
-import 'package:milkrunclone/homeitems/home.dart';
-import 'package:milkrunclone/homeitems/profile.dart';
-import 'package:milkrunclone/homeitems/search.dart';
+import 'package:milkrunclone/views/cart.dart';
+import 'package:milkrunclone/views/home/home.dart';
+import 'package:milkrunclone/views/profile.dart';
+import 'package:milkrunclone/views/search.dart';
 
-import 'route_constants.dart';
+import '../route_constants.dart';
 
 class HomeStack extends StatefulWidget {
   static String id = RouteConstants.homeStackId;

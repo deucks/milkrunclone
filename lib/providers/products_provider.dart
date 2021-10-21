@@ -7,9 +7,21 @@ import 'package:milkrunclone/models/parent_categories.dart';
 import 'package:milkrunclone/models/product.dart';
 
 class ProductsProvider extends ChangeNotifier {
-  final _streamController = StreamController<List<Product>>();
+  final _streamControllerProducts = StreamController<List<Product>>();
   Stream<List<Product>> get productsStream {
-    return _streamController.stream;
+    return _streamControllerProducts.stream;
+  }
+
+  final _streamControllerCategories = StreamController<List<Categories>>();
+  Stream<List<Categories>> get productsCategoryStream {
+    return _streamControllerCategories.stream;
+  }
+
+  void getProductCategories(String parentCategoryName) {
+    List<ParentCategories> fakeData = FakeData.createFakeData();
+    ParentCategories parentCategory =
+        fakeData.where((element) => element.name == parentCategoryName).first;
+    _streamControllerCategories.add(parentCategory.categories);
   }
 
   void getProductsFromCategory(
@@ -24,8 +36,6 @@ class ProductsProvider extends ChangeNotifier {
     for (Categories category in parentCategory.categories) {
       allProducts.addAll(category.products);
     }
-
-    _streamController.add(allProducts);
-    notifyListeners();
+    _streamControllerProducts.add(allProducts);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:milkrunclone/home_stack.dart';
-import 'package:milkrunclone/homeitems/home.dart';
-import 'package:milkrunclone/homeitems/home/view_category.dart';
-import 'package:milkrunclone/homeitems/profile.dart';
+import 'package:milkrunclone/views/home_stack.dart';
+import 'package:milkrunclone/views/home/home.dart';
+import 'package:milkrunclone/views/home/view_category.dart';
+import 'package:milkrunclone/views/profile.dart';
 import 'package:milkrunclone/models/parent_categories.dart';
 import 'package:milkrunclone/providers/cart_provider.dart';
 import 'package:milkrunclone/providers/parent_category_provider.dart';
@@ -10,7 +10,7 @@ import 'package:milkrunclone/providers/products_provider.dart';
 import 'package:milkrunclone/route_constants.dart';
 import 'package:provider/provider.dart';
 
-import 'homeitems/cart.dart';
+import 'views/cart.dart';
 
 void main() {
   runApp(MyApp());
